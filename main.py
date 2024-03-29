@@ -12,31 +12,23 @@ class PurchaseItem(object):
 
 
 def get_total_order_amount(order: List[PurchaseItem]):
-
-    """
-    The total cost of all the items ordered
-    """
-
-    raise NotImplementedError(
-        "REMOVE the error and RETURN the total amount for the order"
-    )
+    return sum([od.price for od in order])
 
 
-def get_service_charge(order: List[PurchaseItem]):
+def get_service_charge(total_amount: float):
+    charge =  min(20, int(total_amount/100))
+    return float(charge * total_amount/ 100)
 
-    """
-    For every Rs. 100, the service charge amount should increase by 1% of order amount, upto a max of 20%
-    Eg:
-        Order Amount = 80, Service Charge = 0
-        Order Amount = 150, Service Charge = 1.5
-        Order Amount = 800, Service Charge = 64
-        Order Amount = 1500, Service Charge = 225
-        Order Amount = 3000, Service Charge = 600
-    """
+    # """
+    # For every Rs. 100, the service charge amount should increase by 1% of order amount, upto a max of 20%
+    # Eg:
+    #     Order Amount = 80, Service Charge = 0
+    #     Order Amount = 150, Service Charge = 1.5
+    #     Order Amount = 800, Service Charge = 64
+    #     Order Amount = 1500, Service Charge = 225
+    #     Order Amount = 3000, Service Charge = 600
+    # """
 
-    raise NotImplementedError(
-        "REMOVE the error and RETURN service charge amount for the order"
-    )
 
 
 class Option(object):
@@ -99,7 +91,7 @@ def print_order(order):
     service_charge = "ERROR"
     if total_amount != "ERROR":
         try:
-            service_charge = get_service_charge(order)
+            service_charge = get_service_charge(total_amount)
         except:
             traceback.print_exc()
             service_charge = "ERROR"
