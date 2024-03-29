@@ -19,18 +19,6 @@ def get_service_charge(total_amount: float):
     charge =  min(20, int(total_amount/100))
     return float(charge * total_amount/ 100)
 
-    # """
-    # For every Rs. 100, the service charge amount should increase by 1% of order amount, upto a max of 20%
-    # Eg:
-    #     Order Amount = 80, Service Charge = 0
-    #     Order Amount = 150, Service Charge = 1.5
-    #     Order Amount = 800, Service Charge = 64
-    #     Order Amount = 1500, Service Charge = 225
-    #     Order Amount = 3000, Service Charge = 600
-    # """
-
-
-
 class Option(object):
     def __init__(self, n=None, pu=None, p=None, d=None):
         self.p = p
